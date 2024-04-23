@@ -1,22 +1,58 @@
 #include "raylib.h"
 #include <iostream>
+#include "Car.h"
 
 using namespace std;
 
-int main() {
+    void Start();
+    void Update();
+    void Draw();
+    void End();
 
-    
-    cout << "Hello World" << endl;
+    Font ft;
+    Car car;
 
-    InitWindow(300, 300, "My first Raylib window!");
-    SetTargetFPS(60);
+    int main() 
+    {
 
-    while (!WindowShouldClose()) {
+        Start();
+
+        while (!WindowShouldClose())
+        {
+            Update();
+            Draw();
+        }
+
+        End();
+        return 0;
+    }
+
+
+    void Start()
+    {
+        InitWindow(1200, 800, "Car Game");
+        SetTargetFPS(60);
+        ft = LoadFont("resources/fonts/jupiter_crash.png");
+    }
+
+    void Update()
+    {
+        car.Update();
+    }
+
+    void Draw()
+    {
         BeginDrawing();
+
         ClearBackground(DARKGREEN);
+
+        car.Draw();
+
         EndDrawing();
     }
 
-    CloseWindow();
-    return 0;
-}
+
+    void End()
+    {
+        CloseWindow();
+    }
