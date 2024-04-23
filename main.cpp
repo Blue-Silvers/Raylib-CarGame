@@ -1,6 +1,7 @@
 #include "raylib.h"
 #include <iostream>
 #include "Car.h"
+#include "Tile.h"
 
 using namespace std;
 
@@ -11,6 +12,7 @@ using namespace std;
 
     Font ft;
     Car car;
+    Tile map[24][16];
 
     int main() 
     {
@@ -45,6 +47,15 @@ using namespace std;
         BeginDrawing();
 
         ClearBackground(DARKGREEN);
+
+
+        for (int x = 0; x < 24; x++)
+        {
+            for (int y = 0; y < 16; y++)
+            {
+                map[x][y].Draw(x,y);
+            }
+        }
 
         car.Draw();
 
