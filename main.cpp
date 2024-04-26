@@ -39,7 +39,7 @@ using namespace std;
 
     void Update()
     {
-        car.Update();
+        car.Update(GetFrameTime());
     }
 
     void Draw()
@@ -58,7 +58,6 @@ using namespace std;
         }
 
         car.Draw();
-
         EndDrawing();
     }
 

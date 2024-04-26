@@ -1,4 +1,7 @@
 #include "Car.h"
+
+#include "raymath.h"
+#include <cmath>
 Car::Car()
 {
 
@@ -6,63 +9,42 @@ Car::Car()
 void Car::Start()
 {
 }
-void Car::Update()
+void Car::Update(float timeDeltaTime)
 {
 	if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))
 	{
-		if (mPlayerX > 0)
-		{
-			mPlayerX -= mPlayerSpeed;
-		}
-		mPlayerRotaion += mPlayerVelocity / mPlayerMaxVelocity *2;
+		mPlayerRotaion -= mPlayerVelocity / mPlayerMaxVelocity * mPlayerSpeed * DEG2RAD * timeDeltaTime;
 	}
 	if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT))
 	{
-		if (mPlayerX + mPlayerSizeX < GetScreenWidth())
-		{
-				mPlayerX += mPlayerSpeed;
-		}
-		mPlayerRotaion -= mPlayerVelocity / mPlayerMaxVelocity *2;
+		mPlayerRotaion += mPlayerVelocity / mPlayerMaxVelocity * mPlayerSpeed * DEG2RAD * timeDeltaTime;
 	}
 	if (IsKeyDown(KEY_W) || IsKeyDown(KEY_UP))
 	{
-		if (mPlayerVelocity != - mPlayerMaxVelocity)
+		if (mPlayerVelocity < mPlayerMaxVelocity)
 		{
-			mPlayerVelocity -= 0.1;
+			mPlayerVelocity += 0.5;
 		}
-
-		mPlayerY += mPlayerVelocity;
 	}
 	else if (IsKeyDown(KEY_S) || IsKeyDown(KEY_DOWN))
 	{
-		if (mPlayerVelocity != mPlayerMaxVelocity)
+		if (mPlayerVelocity > -mPlayerMaxVelocity)
 		{
-			mPlayerVelocity += 0.1;
+			mPlayerVelocity -= 0.5;
 		}
-
-		mPlayerY += mPlayerVelocity;
 	}
 	else 
 	{
-		if (mPlayerVelocity > 0.1)
-		{
-			mPlayerVelocity -= 0.2;
-		}
-		else if (mPlayerVelocity < -0.1)
-		{
-			mPlayerVelocity += 0.2;
-		}
-
-		if (mPlayerVelocity > 0.1 || mPlayerVelocity < -0.1)
-		{
-		mPlayerY += mPlayerVelocity;
-		}
-		
+		mPlayerVelocity = Lerp(mPlayerVelocity, 0, timeDeltaTime * 2);
 	}
+
+	mPlayerX += cos(mPlayerRotaion)*(mPlayerVelocity * timeDeltaTime);
+	mPlayerY += sin(mPlayerRotaion)*(mPlayerVelocity * timeDeltaTime);
+
 }
 void Car::Draw()
 {
 	Rectangle rec{ mPlayerX, mPlayerY, mPlayerSizeX, mPlayerSizeY };
 	Vector2 origin{ mPlayerSizeX / 2, mPlayerSizeY / 2 };
-	DrawRectanglePro(rec, origin, mPlayerRotaion, WHITE);
+	DrawRectanglePro(rec, origin, mPlayerRotaion * RAD2DEG, WHITE);
 }
