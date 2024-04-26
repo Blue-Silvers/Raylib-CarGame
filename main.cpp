@@ -36,6 +36,13 @@ using namespace std;
         SetTargetFPS(60);
         ft = LoadFont("resources/fonts/jupiter_crash.png");
         car.Start();
+        for (int x = 0; x < 24; x++)
+        {
+            for (int y = 0; y < 16; y++)
+            {
+                map[x][y].Start(x, y);
+            }
+        }
     }
 
     void Update()
