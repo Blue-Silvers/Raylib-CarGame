@@ -13,6 +13,9 @@ using namespace std;
     Font ft;
     Car car;
     Tile map[24][16];
+    float timer;
+    float second;
+    float minute;
 
     int main() 
     {
@@ -64,6 +67,13 @@ using namespace std;
                 map[x][y].Draw(x,y);
             }
         }
+        second += GetFrameTime();
+        if (second >= 59) 
+        {
+            second = 0;
+            minute += 1;
+        }
+        DrawTextEx(ft, TextFormat("Race time :\n\n\n %02.02f min", /*GetTime() / 100)*/minute + second/100), Vector2{500,50}, 50, 5, WHITE);
 
         car.Draw();
         EndDrawing();
