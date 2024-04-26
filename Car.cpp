@@ -41,11 +41,29 @@ void Car::Update(float timeDeltaTime)
 	mPlayerX += cos(mPlayerRotaion)*(mPlayerVelocity * timeDeltaTime);
 	mPlayerY += sin(mPlayerRotaion)*(mPlayerVelocity * timeDeltaTime);
 
+
+	if (mPlayerX < mPlayerSizeY)
+	{
+		mPlayerX = mPlayerSizeY;
+	}
+	if (mPlayerY < mPlayerSizeY)
+	{
+		mPlayerY = mPlayerSizeY;
+	}
+	if (mPlayerX + mPlayerSizeY > GetScreenWidth())
+	{
+		mPlayerX = GetScreenWidth() - mPlayerSizeY;
+	}
+	if (mPlayerY + mPlayerSizeY > GetScreenHeight())
+	{
+		mPlayerY = GetScreenHeight() - mPlayerSizeY;
+	}
+
 }
 void Car::Draw()
 {
 	Rectangle rec{ mPlayerX, mPlayerY, mPlayerSizeX, mPlayerSizeY };
 	Vector2 origin{ mPlayerSizeX / 2, mPlayerSizeY / 2 };
-	DrawRectanglePro(rec, origin, mPlayerRotaion * RAD2DEG, WHITE);
+	//DrawRectanglePro(rec, origin, mPlayerRotaion * RAD2DEG, WHITE);
 	DrawTexturePro(carTexture, Rectangle { 0, 0, 65, 39 }, rec, origin, mPlayerRotaion * RAD2DEG, WHITE);
 }

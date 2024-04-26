@@ -13,8 +13,8 @@ private:
 	Texture2D carTexture;
 
 public:
-	float mPlayerX = 50;
-	float mPlayerY = 150;
+	float mPlayerX = 815;
+	float mPlayerY = 675;
 	float mPlayerSizeX = 50;
 	float mPlayerSizeY = 28;
 	bool mCanGoForward = true;
