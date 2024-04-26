@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
-
+#include "raymath.h"
+#include <cmath>
 class Car
 {
 private:
@@ -9,12 +10,13 @@ private:
 	float mPlayerVelocity = 0;
 	float mPlayerMaxVelocity = 200;
 	float mPlayerRotaion = 0;
+	Texture2D carTexture;
 
 public:
 	float mPlayerX = 50;
 	float mPlayerY = 150;
-	float mPlayerSizeX = 40;
-	float mPlayerSizeY = 20;
+	float mPlayerSizeX = 50;
+	float mPlayerSizeY = 28;
 	bool mCanGoForward = true;
 	Car();
 	void Update(float timeDeltaTime);

@@ -1,13 +1,13 @@
 #include "Car.h"
 
-#include "raymath.h"
-#include <cmath>
+
 Car::Car()
 {
 
 }
 void Car::Start()
 {
+	carTexture = LoadTexture("kenney_racing-pack/PNG/Cars/car_blue_small_5.png");
 }
 void Car::Update(float timeDeltaTime)
 {
@@ -47,4 +47,5 @@ void Car::Draw()
 	Rectangle rec{ mPlayerX, mPlayerY, mPlayerSizeX, mPlayerSizeY };
 	Vector2 origin{ mPlayerSizeX / 2, mPlayerSizeY / 2 };
 	DrawRectanglePro(rec, origin, mPlayerRotaion * RAD2DEG, WHITE);
+	DrawTexturePro(carTexture, Rectangle { 0, 0, 65, 39 }, rec, origin, mPlayerRotaion * RAD2DEG, WHITE);
 }

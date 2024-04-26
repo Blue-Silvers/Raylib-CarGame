@@ -35,6 +35,7 @@ using namespace std;
         InitWindow(1200, 800, "Car Game");
         SetTargetFPS(60);
         ft = LoadFont("resources/fonts/jupiter_crash.png");
+        car.Start();
     }
 
     void Update()
