@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Car.h"
 #include "Tile.h"
+#include "Timer.h"
+
 
 using namespace std;
 
@@ -13,9 +15,9 @@ using namespace std;
     Font ft;
     Car car;
     Tile map[24][16];
-    float timer;
-    float second;
-    float minute;
+    Timer timer;
+    int nbCheckPoint;
+    bool allCheckpointValidate = false;
 
     int main() 
     {
@@ -46,11 +48,38 @@ using namespace std;
                 map[x][y].Start(x, y);
             }
         }
+        allCheckpointValidate = false;
+        timer.Start();
     }
 
     void Update()
     {
+        nbCheckPoint = 0;
         car.Update(GetFrameTime());
+        for (int x = 0; x < 24; x++)
+        {
+            for (int y = 0; y < 16; y++)
+            {
+                
+                map[x][y].Update(car, x, y, allCheckpointValidate);
+                if (map[x][y].mCheckpoint == false) 
+                {
+                    nbCheckPoint += 1;
+                }
+                if (map[x][y].mValidateCheckpoint == true && x>0 && y>0) 
+                {
+                    map[x][y + 1].mCheckpoint = true;
+                    map[x + 1][y].mCheckpoint = true;
+                    map[x][y - 1].mCheckpoint = true;
+                    map[x - 1][y].mCheckpoint = true;
+                }
+            }
+        }
+        if (nbCheckPoint == 0) 
+        {
+            allCheckpointValidate = true;
+        }
+        timer.Update();
     }
 
     void Draw()
@@ -67,13 +96,10 @@ using namespace std;
                 map[x][y].Draw(x,y);
             }
         }
-        second += GetFrameTime();
-        if (second >= 59) 
-        {
-            second = 0;
-            minute += 1;
-        }
-        DrawTextEx(ft, TextFormat("Race time :\n\n\n %02.02f min", /*GetTime() / 100)*/minute + second/100), Vector2{500,50}, 50, 5, WHITE);
+
+        timer.Draw(ft);
+
+        DrawTextEx(ft, TextFormat(" %01i ", nbCheckPoint), Vector2{ 200,50 }, 50, 5, WHITE);
 
         car.Draw();
         EndDrawing();

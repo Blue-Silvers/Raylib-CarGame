@@ -17,6 +17,7 @@ void Tile::Start(int x, int y)
 	else if (mTileMap[y][x] == (int)TileType::CHECKPOINT)
 	{
 		checkpoint = LoadTexture("kenney_racing-pack/PNG/Tiles/Asphalt_road/road_asphalt90.png");
+		mCheckpoint = false;
 	}
 	else if (mTileMap[y][x] == (int)TileType::STARTLINE1)
 	{
@@ -40,8 +41,22 @@ void Tile::Start(int x, int y)
 		tribune = LoadTexture("kenney_racing-pack/PNG/Objects/tribune_full.png");
 	}
 }
-void Tile::Update()
+int Tile::Update(Car car, int x, int y, bool activeEnd)
 {
+	if (mCheckpoint == false && car.mPlayerX + car.mPlayerSizeX / 2 > mTileX * x && car.mPlayerX + car.mPlayerSizeX / 2 < mTileX * x + mTileSize && car.mPlayerY + car.mPlayerSizeY / 2 > mTileY * y && car.mPlayerY + car.mPlayerSizeY / 2 < mTileY * y + mTileSize)
+	{
+		mCheckpoint = true;
+		mValidateCheckpoint = true;
+		return 1;
+	}
+	if (activeEnd == true && car.mPlayerX + car.mPlayerSizeX / 2 > mTileX * x && car.mPlayerX + car.mPlayerSizeX / 2 < mTileX * x + mTileSize && car.mPlayerY + car.mPlayerSizeY / 2 > mTileY * y && car.mPlayerY + car.mPlayerSizeY / 2 < mTileY * y + mTileSize)
+	{
+		if (mTileMap[y][x] == (int)TileType::STARTLINE1 || mTileMap[y][x] == (int)TileType::STARTLINE2)
+		{
+			//end game
+			return 2;
+		}
+	}
 }
 void Tile::Draw(int x, int y)
 {

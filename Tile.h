@@ -1,6 +1,8 @@
 #pragma once
 #include "raylib.h"
 #include "Environement.h"
+#include "Car.h"
+
 
 class Tile
 {
@@ -29,14 +31,17 @@ private:
         { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
     };
 
-
     Texture2D grass, road, checkpoint, startLine1, startLine2, startPos, obstacle, tribune;
+
 
 public:
 
 	Tile();
-	void Update();
+	int Update(Car car, int x, int y, bool activeEnd);
 	void Draw(int x, int y);
 	void Start(int x, int y);
+
+    bool mCheckpoint = true;
+    bool mValidateCheckpoint = false;
 };
 
