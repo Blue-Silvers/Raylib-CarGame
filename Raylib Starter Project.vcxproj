@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Environement.cpp" />
+    <ClCompile Include="LoadAllTextureAtStart.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -142,6 +143,7 @@
   <ItemGroup>
     <ClInclude Include="Car.h" />
     <ClInclude Include="Environement.h" />
+    <ClInclude Include="LoadAllTextureAtStart.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>

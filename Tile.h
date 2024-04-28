@@ -39,7 +39,7 @@ public:
 	Tile();
 	int Update(Car car, int x, int y, bool activeEnd);
 	void Draw(int x, int y);
-	void Start(int x, int y);
+	void Start(int x, int y, Texture2D loadGrass, Texture2D loadRoad, Texture2D loadCheckpoint, Texture2D loadStartLine1, Texture2D loadStartLine2, Texture2D loadStartPos, Texture2D loadObstacle, Texture2D loadTribune);
 
     bool mCheckpoint = true;
     bool mValidateCheckpoint = false;

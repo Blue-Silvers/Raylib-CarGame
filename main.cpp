@@ -3,6 +3,7 @@
 #include "Car.h"
 #include "Tile.h"
 #include "Timer.h"
+#include "LoadAllTextureAtStart.h"
 
 
 using namespace std;
@@ -16,6 +17,8 @@ using namespace std;
     Car car;
     Tile map[24][16];
     Timer timer;
+    LoadAllTextureAtStart loadAllTexture;
+
     int nbCheckPoint;
     bool allCheckpointValidate = false;
 
@@ -41,11 +44,12 @@ using namespace std;
         SetTargetFPS(60);
         ft = LoadFont("resources/fonts/jupiter_crash.png");
         car.Start();
+        loadAllTexture.Start();
         for (int x = 0; x < 24; x++)
         {
             for (int y = 0; y < 16; y++)
             {
-                map[x][y].Start(x, y);
+                map[x][y].Start(x, y, loadAllTexture.loadGrass, loadAllTexture.loadRoad, loadAllTexture.loadCheckpoint, loadAllTexture.loadStartLine1, loadAllTexture.loadStartLine2, loadAllTexture.loadStartPos, loadAllTexture.loadObstacle, loadAllTexture.loadTribune);
             }
         }
         allCheckpointValidate = false;

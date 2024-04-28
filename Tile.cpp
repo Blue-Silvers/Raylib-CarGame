@@ -3,42 +3,42 @@ Tile::Tile()
 {
 
 }
-void Tile::Start(int x, int y)
+void Tile::Start(int x, int y, Texture2D loadGrass, Texture2D loadRoad, Texture2D loadCheckpoint, Texture2D loadStartLine1, Texture2D loadStartLine2, Texture2D loadStartPos, Texture2D loadObstacle, Texture2D loadTribune)
 {
 	//load texture
 	if (mTileMap[y][x] == (int)TileType::GRASS)
 	{
-		grass = LoadTexture("kenney_racing-pack/PNG/Tiles/Grass/land_grass04.png");
+		grass = loadGrass;
 	}
 	else if (mTileMap[y][x] == (int)TileType::ROAD)
 	{
-		road = LoadTexture("kenney_racing-pack/PNG/Tiles/Asphalt_road/road_asphalt22.png");
+		road = loadRoad;
 	}
 	else if (mTileMap[y][x] == (int)TileType::CHECKPOINT)
 	{
-		checkpoint = LoadTexture("kenney_racing-pack/PNG/Tiles/Asphalt_road/road_asphalt90.png");
+		checkpoint = loadCheckpoint;
 		mCheckpoint = false;
 	}
 	else if (mTileMap[y][x] == (int)TileType::STARTLINE1)
 	{
-		startLine1 = LoadTexture("kenney_racing-pack/PNG/Tiles/Asphalt_road/road_asphalt87.png");
+		startLine1 = loadStartLine1;
 	}
 	else if (mTileMap[y][x] == (int)TileType::STARTLINE2)
 	{
-		startLine2 = LoadTexture("kenney_racing-pack/PNG/Tiles/Asphalt_road/road_asphalt89.png");
+		startLine2 = loadStartLine2;
 	}
 	else if (mTileMap[y][x] == (int)TileType::STARTPOS)
 	{
-		startPos = LoadTexture("kenney_racing-pack/PNG/Tiles/Asphalt_road/road_asphalt84.png");
+		startPos = loadStartPos;
 	}
 	else if (mTileMap[y][x] == (int)TileType::OBSTACLE)
 	{
-		grass = LoadTexture("kenney_racing-pack/PNG/Tiles/Grass/land_grass04.png");
-		obstacle = LoadTexture("kenney_racing-pack/PNG/Objects/tree_small.png");
+		grass = loadGrass;
+		obstacle = loadObstacle;
 	}
 	else if (mTileMap[y][x] == (int)TileType::TRIBUNE)
 	{
-		tribune = LoadTexture("kenney_racing-pack/PNG/Objects/tribune_full.png");
+		tribune = loadTribune;
 	}
 }
 int Tile::Update(Car car, int x, int y, bool activeEnd)
