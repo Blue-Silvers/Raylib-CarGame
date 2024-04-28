@@ -8,6 +8,10 @@ Car::Car()
 void Car::Start()
 {
 	carTexture = LoadTexture("kenney_racing-pack/PNG/Cars/car_blue_small_5.png");
+	mPlayerX = 815;
+	mPlayerY = 675;
+	mPlayerRotaion = 0;
+	mPlayerVelocity = 0;
 }
 void Car::Update(float timeDeltaTime)
 {

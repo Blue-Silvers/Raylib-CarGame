@@ -4,11 +4,13 @@
 #include "Tile.h"
 #include "Timer.h"
 #include "LoadAllTextureAtStart.h"
+#include "Menus.h"
 
 
 using namespace std;
 
     void Start();
+    void StartRace();
     void Update();
     void Draw();
     void End();
@@ -18,6 +20,7 @@ using namespace std;
     Tile map[24][16];
     Timer timer;
     LoadAllTextureAtStart loadAllTexture;
+    Menus menus;
 
     int nbCheckPoint;
     bool allCheckpointValidate = false;
@@ -43,8 +46,13 @@ using namespace std;
         InitWindow(1200, 800, "Car Game");
         SetTargetFPS(60);
         ft = LoadFont("resources/fonts/jupiter_crash.png");
-        car.Start();
         loadAllTexture.Start();
+        menus.Start(ft);
+    }
+
+    void StartRace()
+    {
+        car.Start();
         for (int x = 0; x < 24; x++)
         {
             for (int y = 0; y < 16; y++)
@@ -58,6 +66,14 @@ using namespace std;
 
     void Update()
     {
+        if (menus.Update() == 1) 
+        {
+            StartRace();
+        }
+        else if (menus.Update() == 2)
+        {
+            End();
+        }
         nbCheckPoint = 0;
         car.Update(GetFrameTime());
         for (int x = 0; x < 24; x++)
@@ -68,6 +84,7 @@ using namespace std;
                 if (map[x][y].Update(car, x, y, allCheckpointValidate) == 2) 
                 {
                     timer.Pause();
+                    menus.GameOver();
                 }
                 if (map[x][y].mCheckpoint == false) 
                 {
@@ -106,9 +123,9 @@ using namespace std;
 
         timer.Draw(ft);
 
-        DrawTextEx(ft, TextFormat(" %01i ", nbCheckPoint), Vector2{ 200,50 }, 50, 5, WHITE);
-
         car.Draw();
+
+        menus.Draw(timer.mGetMinute, timer.mGetSecond);
         EndDrawing();
     }
 

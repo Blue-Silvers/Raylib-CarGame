@@ -16,5 +16,7 @@ public:
 	void Draw(Font ft);
 	void Start();
 	void Pause();
+	float mGetSecond;
+	float mGetMinute;
 };
 

@@ -31,4 +31,6 @@ void Timer::Draw(Font ft)
 void Timer::Pause() 
 {
     mStopTimer = true;
+    mGetMinute = mMinute;
+    mGetSecond = mSecond;
 }
