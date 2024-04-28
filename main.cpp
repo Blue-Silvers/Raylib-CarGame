@@ -61,7 +61,10 @@ using namespace std;
             for (int y = 0; y < 16; y++)
             {
                 
-                map[x][y].Update(car, x, y, allCheckpointValidate);
+                if (map[x][y].Update(car, x, y, allCheckpointValidate) == 2) 
+                {
+                    timer.Pause();
+                }
                 if (map[x][y].mCheckpoint == false) 
                 {
                     nbCheckPoint += 1;

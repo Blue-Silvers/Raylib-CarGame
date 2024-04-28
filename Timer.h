@@ -7,6 +7,7 @@ private:
 
 	float mSecond;
 	float mMinute;
+	bool mStopTimer = false;
 
 public:
 
@@ -14,5 +15,6 @@ public:
 	void Update();
 	void Draw(Font ft);
 	void Start();
+	void Pause();
 };
 
