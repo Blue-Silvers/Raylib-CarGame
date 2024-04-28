@@ -18,6 +18,7 @@ public:
 	float mPlayerSizeX = 50;
 	float mPlayerSizeY = 28;
 	bool mCanGoForward = true;
+	bool mCanGoBackward = true;
 	Car();
 	void Update(float timeDeltaTime, float multiplicator);
 	void Draw();

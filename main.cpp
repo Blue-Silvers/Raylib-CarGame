@@ -93,6 +93,10 @@ using namespace std;
                 {
                     speedMultiply = 0.5;
                 }
+                else if (map[x][y].Update(car, x, y, allCheckpointValidate) == 4)
+                {
+                    speedMultiply = 0;
+                }
                 if (map[x][y].mCheckpoint == false) 
                 {
                     nbCheckPoint += 1;

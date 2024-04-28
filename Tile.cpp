@@ -63,6 +63,13 @@ int Tile::Update(Car car, int x, int y, bool activeEnd)
 			return 3;
 		}
 	}
+	if (car.mPlayerX + car.mPlayerSizeX > mTileX * x && car.mPlayerX < mTileX * x + mTileSize && car.mPlayerY + car.mPlayerSizeY > mTileY * y + mTileSize && car.mPlayerY - car.mPlayerSizeY < mTileY * y + mTileSize)
+	{
+		if (mTileMap[y][x] == (int)TileType::OBSTACLE || mTileMap[y][x] == (int)TileType::TRIBUNE || mTileMap[y][x] == 9)
+		{
+			return 4;
+		}
+	}
 }
 void Tile::Draw(int x, int y)
 {

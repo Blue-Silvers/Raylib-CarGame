@@ -29,12 +29,20 @@ void Car::Update(float timeDeltaTime, float multiplicator)
 		{
 			mPlayerVelocity += 0.5;
 		}
+		if (mCanGoForward == false) 
+		{
+			mPlayerVelocity = 0;
+		}
 	}
 	else if (IsKeyDown(KEY_S) || IsKeyDown(KEY_DOWN))
 	{
 		if (mPlayerVelocity > -mPlayerMaxVelocity)
 		{
 			mPlayerVelocity -= 0.5;
+		}
+		if (mCanGoBackward == false)
+		{
+			mPlayerVelocity = 0;
 		}
 	}
 	else 
@@ -45,6 +53,15 @@ void Car::Update(float timeDeltaTime, float multiplicator)
 	mPlayerX += cos(mPlayerRotaion)*(mPlayerVelocity * multiplicator * timeDeltaTime);
 	mPlayerY += sin(mPlayerRotaion)*(mPlayerVelocity * multiplicator * timeDeltaTime);
 
+	if (multiplicator == 0)
+	{
+		mCanGoForward = false;
+		mPlayerX += cos(mPlayerRotaion) * (mPlayerVelocity * timeDeltaTime);
+		mPlayerY += sin(mPlayerRotaion) * (mPlayerVelocity * timeDeltaTime);
+	}
+	else {
+		mCanGoForward = true;
+	}
 
 	if (mPlayerX < mPlayerSizeY)
 	{
