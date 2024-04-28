@@ -19,7 +19,7 @@ public:
 	float mPlayerSizeY = 28;
 	bool mCanGoForward = true;
 	Car();
-	void Update(float timeDeltaTime);
+	void Update(float timeDeltaTime, float multiplicator);
 	void Draw();
 	void Start();
 };

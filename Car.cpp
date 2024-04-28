@@ -13,7 +13,7 @@ void Car::Start()
 	mPlayerRotaion = 0;
 	mPlayerVelocity = 0;
 }
-void Car::Update(float timeDeltaTime)
+void Car::Update(float timeDeltaTime, float multiplicator)
 {
 	if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT))
 	{
@@ -42,8 +42,8 @@ void Car::Update(float timeDeltaTime)
 		mPlayerVelocity = Lerp(mPlayerVelocity, 0, timeDeltaTime * 2);
 	}
 
-	mPlayerX += cos(mPlayerRotaion)*(mPlayerVelocity * timeDeltaTime);
-	mPlayerY += sin(mPlayerRotaion)*(mPlayerVelocity * timeDeltaTime);
+	mPlayerX += cos(mPlayerRotaion)*(mPlayerVelocity * multiplicator * timeDeltaTime);
+	mPlayerY += sin(mPlayerRotaion)*(mPlayerVelocity * multiplicator * timeDeltaTime);
 
 
 	if (mPlayerX < mPlayerSizeY)

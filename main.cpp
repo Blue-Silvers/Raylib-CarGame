@@ -24,6 +24,7 @@ using namespace std;
 
     int nbCheckPoint;
     bool allCheckpointValidate = false;
+    float speedMultiply = 1;
 
     int main() 
     {
@@ -52,6 +53,7 @@ using namespace std;
 
     void StartRace()
     {
+        int speedMultiply = 1;
         car.Start();
         for (int x = 0; x < 24; x++)
         {
@@ -75,7 +77,8 @@ using namespace std;
             End();
         }
         nbCheckPoint = 0;
-        car.Update(GetFrameTime());
+        car.Update(GetFrameTime(), speedMultiply);
+        speedMultiply = 1;
         for (int x = 0; x < 24; x++)
         {
             for (int y = 0; y < 16; y++)
@@ -85,6 +88,10 @@ using namespace std;
                 {
                     timer.Pause();
                     menus.GameOver();
+                }
+                else if (map[x][y].Update(car, x, y, allCheckpointValidate) == 3)
+                {
+                    speedMultiply = 0.5;
                 }
                 if (map[x][y].mCheckpoint == false) 
                 {

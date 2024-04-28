@@ -53,8 +53,14 @@ int Tile::Update(Car car, int x, int y, bool activeEnd)
 	{
 		if (mTileMap[y][x] == (int)TileType::STARTLINE1 || mTileMap[y][x] == (int)TileType::STARTLINE2)
 		{
-			//end game
 			return 2;
+		}
+	}
+	if (car.mPlayerX + car.mPlayerSizeX / 2 > mTileX * x && car.mPlayerX + car.mPlayerSizeX / 2 < mTileX * x + mTileSize && car.mPlayerY + car.mPlayerSizeY / 2 > mTileY * y && car.mPlayerY + car.mPlayerSizeY / 2 < mTileY * y + mTileSize)
+	{
+		if (mTileMap[y][x] == (int)TileType::GRASS)
+		{
+			return 3;
 		}
 	}
 }
