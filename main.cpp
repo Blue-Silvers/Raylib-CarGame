@@ -41,7 +41,6 @@ using namespace std;
         return 0;
     }
 
-
     void Start()
     {
         InitWindow(1200, 800, "Car Game");
@@ -139,7 +138,6 @@ using namespace std;
         menus.Draw(timer.mGetMinute, timer.mGetSecond);
         EndDrawing();
     }
-
 
     void End()
     {
