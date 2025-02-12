@@ -7,6 +7,12 @@
 #include "Menus.h"
 
 
+namespace GameConfig 
+{
+    constexpr int SCREEN_WIGHT = 1200;
+    constexpr int SCREEN_HEIGHT = 800;
+}
+
 using namespace std;
 
     void Start();
@@ -43,7 +49,7 @@ using namespace std;
 
     void Start()
     {
-        InitWindow(1200, 800, "Car Game");
+        InitWindow(GameConfig::SCREEN_WIGHT, GameConfig::SCREEN_HEIGHT, "Car Game");
         SetTargetFPS(60);
         ft = LoadFont("resources/fonts/jupiter_crash.png");
         loadAllTexture.Start();
